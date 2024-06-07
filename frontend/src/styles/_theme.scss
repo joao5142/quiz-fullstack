@@ -1,0 +1,14 @@
+$sizes: heading-l, heading-s, heading-m, body-m, body-s, display;
+$weights: thin, regular, medium, semibold, bold;
+
+@each $size in $sizes {
+  .app-font-size-#{$size} {
+    font-size: var(--v-theme-font-size-#{$size});
+  }
+}
+
+@each $weight in $weights {
+  .app-font-weight-#{$weight} {
+    font-weight: var(--v-theme-font-weight-#{$weight});
+  }
+}

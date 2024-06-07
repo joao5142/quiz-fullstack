@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum QuizStatus {
+  PENDING
+  COMPLETED
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  name     String
+  email    String @unique
+  password String
+
+  role Role @default(USER)
+
+  quizzes Quiz[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+model Quiz {
+  id Int @id @default(autoincrement())
+
+  name String
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+
+  score Float?
+
+  status QuizStatus @default(PENDING)
+
+  quizQuestions QuizQuestion[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+}
+
+model QuizQuestion {
+  id Int @id @default(autoincrement())
+
+  question   Question @relation(fields: [questionId], references: [id])
+  questionId Int
+
+  markedAlternative String?
+
+  quiz   Quiz @relation(fields: [quizId], references: [id])
+  quizId Int
+}
+
+model QuestionCategory {
+  id   Int    @id @default(autoincrement())
+  name String
+  slug String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  questions Question[]
+}
+
+model Question {
+  id                 Int    @id @default(autoincrement())
+  alternativeA       String
+  alternativeB       String
+  alternativeC       String
+  alternativeD       String
+  alternativeE       String
+  description        String
+  correctAlternative String
+
+  questionCategory   QuestionCategory @relation(fields: [questionCategoryId], references: [id])
+  questionCategoryId Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
+
+  quizQuestions QuizQuestion[]
+}

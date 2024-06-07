@@ -1,0 +1,71 @@
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.p-relative {
+  position: relative;
+}
+.p-absolute {
+  position: relative;
+}
+
+.border-detail {
+  border: 5px solid rgb(var(--v-theme-background)) !important;
+}
+
+.br-inherit {
+  border-radius: inherit;
+}
+.br-rounded {
+  border-radius: 50% !important;
+}
+
+.br-inherit-top-left {
+  border-top-left-radius: inherit;
+}
+.br-inherit-top-right {
+  border-top-right-radius: inherit;
+}
+
+.br-inherit-bottom-left {
+  border-bottom-left-radius: inherit;
+}
+.br-inherit-bottom-right {
+  border-bottom-right-radius: inherit;
+}
+.br-inherit-top {
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+.br-inherit-bottom {
+  border-bottom-left-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+.br-inherit-left {
+  border-top-left-radius: inherit;
+  border-bottom-left-radius: inherit;
+}
+
+.br-inherit-right {
+  border-top-right-radius: inherit;
+  border-bottom-right-radius: inherit;
+}
+
+.gap-5 {
+  gap: 5px;
+}
+.gap-10 {
+  gap: 10px;
+}
+.gap-15 {
+  gap: 15px;
+}
+.gap-20 {
+  gap: 20px;
+}
+
+.gap-30 {
+  gap: 30px;
+}

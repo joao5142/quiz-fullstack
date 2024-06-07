@@ -1,0 +1,6 @@
+export const USER_COLLECTION = '@treinutri:user'
+export const USER_THEME_COLLECTION = '@treinutri:user-theme'
+export const USER_PERFIL_THEME_COLLECTION = '@treinutri:user-perfil-theme'
+export const USER_LOGGED_IN = '@treinutri:logged-in'
+export const USER_TOKEN = '@treinutri:token'
+export const USER_XSRF = 'XSRF-TOKEN'
