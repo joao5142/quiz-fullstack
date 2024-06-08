@@ -4,6 +4,7 @@ import { prisma } from '@/lib/prisma'
 
 interface ICreateQuizPayload extends ICreateQuiz {
   questionsIds: { questionId: number }[]
+  totalQuestions: number
 }
 
 export class QuizRepository implements IQuizRepository {
@@ -40,7 +41,8 @@ export class QuizRepository implements IQuizRepository {
           createMany: {
             data: data.questionsIds
           }
-        }
+        },
+        totalQuestions: data.totalQuestions
       }
     })
     return createdQuiz

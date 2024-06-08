@@ -36,7 +36,8 @@ const questionCategories: QuizCategoryTypes[] = ['html', 'css', 'js', 'accessibi
 
 async function handleNavigateToQuizCategory(category: QuizCategoryTypes) {
   try {
-    // const quiz = await QuizServices.createQuiz(category)
+    const quiz = await QuizServices.createQuiz(category)
+
     await navigateTo('/quiz/1')
   } catch (err) {}
 }

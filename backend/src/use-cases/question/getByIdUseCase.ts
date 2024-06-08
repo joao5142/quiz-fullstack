@@ -1,5 +1,5 @@
 import { prisma } from '@/lib/prisma'
-import { QuestionRepository } from '../../repositorys/question/repository'
+import { QuestionRepository } from '../../repositories/question/repository'
 
 interface GetByIdUseCaseRequest {
   id: number

@@ -1,14 +1,20 @@
-import { QuestionRepository } from '@/repositorys/question/repository'
-import { QuizRepository } from '@/repositorys/quiz/repository'
+import { QuestionRepository } from '@/repositories/question/repository'
+import { QuestionCategoryRepository } from '@/repositories/questionCategory/repository'
+import { QuizRepository } from '@/repositories/quiz/repository'
 import { CreateQuizUseCase } from '@/use-cases/quiz/createQuizUseCase'
 import { FinishQuizUseCase } from '@/use-cases/quiz/finishQuizUseCase'
 import { GetQuizByIdUseCase } from '@/use-cases/quiz/getQuizByIdUseCase'
 
 export function createQuizUseCaseFactory() {
+  const questionCategoryRepository = new QuestionCategoryRepository()
   const questionRepository = new QuestionRepository()
   const quizRepository = new QuizRepository()
 
-  const createQuizUseCase = new CreateQuizUseCase(quizRepository, questionRepository)
+  const createQuizUseCase = new CreateQuizUseCase(
+    quizRepository,
+    questionCategoryRepository,
+    questionRepository
+  )
 
   return createQuizUseCase
 }

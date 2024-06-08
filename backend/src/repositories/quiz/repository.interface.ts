@@ -2,7 +2,7 @@ import { Quiz, Prisma } from '@prisma/client'
 
 export interface ICreateQuiz {
   userId: number
-  questionCategoryId: number
+  questionCategorySlug: string
 }
 export interface IQuizRepository {
   create(data: ICreateQuiz): Promise<Quiz | null>

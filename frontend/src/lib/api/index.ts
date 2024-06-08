@@ -8,12 +8,8 @@ interface AdaptAxiosRequestConfig extends AxiosRequestConfig {
 }
 
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:8000/api',
+  baseURL: import.meta.env.VITE_API_URL || 'http://0.0.0.0:3333',
   timeout: 10000,
-  withCredentials: true,
-  withXSRFToken: true,
-  xsrfCookieName: 'XSRF-TOKEN',
-  xsrfHeaderName: 'X-XSRF-TOKEN',
   headers: {
     Accept: 'application/json',
   },

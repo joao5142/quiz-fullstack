@@ -5,7 +5,7 @@ const resourceName = '/quiz'
 
 export class QuizServices {
   static async createQuiz(category: QuizCategoryTypes): Promise<IQuiz | null> {
-    const { data } = await axios.get(resourceName, {
+    const { data } = await axios.post(resourceName, {
       params: {
         category,
       },

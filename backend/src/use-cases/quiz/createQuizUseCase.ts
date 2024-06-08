@@ -1,25 +1,28 @@
-import { QuestionRepository } from '@/repositorys/question/repository'
-import { QuizRepository } from '@/repositorys/quiz/repository'
+import { QuestionRepository } from '@/repositories/question/repository'
+import { QuestionCategoryRepository } from '@/repositories/questionCategory/repository'
+import { QuizRepository } from '@/repositories/quiz/repository'
 import { Quiz } from '@prisma/client'
 
 interface CreateQuizUseCaseRequest {
   userId: number
-  questionCategoryId: number
+  questionCategorySlug: string
 }
 
 export class CreateQuizUseCase {
   constructor(
     private readonly quizRepository: QuizRepository,
+    private readonly questionCategoryRepository: QuestionCategoryRepository,
     private readonly questionRepository: QuestionRepository
   ) {}
 
   async execute(data: CreateQuizUseCaseRequest): Promise<Quiz | null> {
-    const questionsIds = await this.questionRepository.findManyRandomByCategory(
-      data.questionCategoryId
-    )
+    const category = await this.questionCategoryRepository.findBySlug(data.questionCategorySlug)
+
+    const questionsIds = await this.questionRepository.findManyRandomByCategory(category!.id)
 
     const createdQuiz = await this.quizRepository.create({
       ...data,
+      totalQuestions: questionsIds.length,
       questionsIds
     })
 
