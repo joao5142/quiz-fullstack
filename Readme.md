@@ -1,4 +1,4 @@
-<h1>Toolzz</h1>
+<h1>Frontend Quiz PWA App</h1>
 <h4>🚀 Projeto Frontend Quiz PWA - Fullstack </h4>
 
 <h2>🚧 Status do projeto</h2>
