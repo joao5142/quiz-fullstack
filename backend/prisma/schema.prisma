@@ -31,6 +31,13 @@ enum Alternatives {
   e
 }
 
+enum Categories {
+  html
+  css
+  js
+  accessibility
+}
+
 model User {
   id       Int    @id @default(autoincrement())
   name     String
@@ -53,7 +60,9 @@ model Quiz {
   user   User @relation(fields: [userId], references: [id])
   userId Int
 
-  totalQuestions Int?
+  categorySlug     Categories?
+  correctQuestions Int?
+  totalQuestions   Int?
 
   score Float?
 
@@ -80,9 +89,9 @@ model QuizQuestion {
 }
 
 model QuestionCategory {
-  id   Int    @id @default(autoincrement())
+  id   Int        @id @default(autoincrement())
   name String
-  slug String @unique
+  slug Categories @unique
 
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
@@ -91,14 +100,15 @@ model QuestionCategory {
 }
 
 model Question {
-  id                 Int          @id @default(autoincrement())
-  alternativeA       String
-  alternativeB       String
-  alternativeC       String
-  alternativeD       String
-  alternativeE       String
-  description        String
-  correctAlternative Alternatives
+  id           Int    @id @default(autoincrement())
+  alternativeA String
+  alternativeB String
+  alternativeC String
+  alternativeD String
+  alternativeE String
+  description  String
+
+  correctAlternative Alternatives?
 
   questionCategory   QuestionCategory @relation(fields: [questionCategoryId], references: [id])
   questionCategoryId Int

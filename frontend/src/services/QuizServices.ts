@@ -1,3 +1,4 @@
+import { AlternativeSlugTypes, IQuestion } from '../types/globals/question'
 import api from '@/lib/api'
 import { IPagination } from '~/types/globals/pagination'
 
@@ -32,6 +33,26 @@ export class QuizServices {
         page,
       },
     })
+    return data
+  }
+
+  static async markQuizQuestion({
+    quizId,
+    questionId,
+    markedAlternative,
+  }: {
+    quizId: number
+    questionId: number
+    markedAlternative: AlternativeSlugTypes
+  }): Promise<IQuestion | null> {
+    const { data } = await api.post(`${resourceName}/${quizId}/questions/${questionId}/mark`, {
+      markedAlternative,
+    })
+    return data
+  }
+
+  static async finishQuiz(quizId: number): Promise<IQuiz | null> {
+    const { data } = await api.post(`${resourceName}/${quizId}/finish`)
     return data
   }
 }

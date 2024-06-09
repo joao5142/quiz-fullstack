@@ -1,14 +1,13 @@
-import { $Enums, Prisma, Quiz } from '@prisma/client'
-import { ICreateQuiz, IQuizRepository } from './repository.interface'
+import { Quiz } from '@prisma/client'
+import { ICalculateScoreResponse, ICreateQuiz, IQuizRepository } from './repository.interface'
 import { prisma } from '@/lib/prisma'
 
 interface ICreateQuizPayload extends ICreateQuiz {
   questionsIds: { questionId: number }[]
   totalQuestions: number
 }
-
 export class QuizRepository implements IQuizRepository {
-  async calculateScore(quizId: number): Promise<number | null> {
+  async calculateScore(quizId: number): Promise<ICalculateScoreResponse | null> {
     const questions = await prisma.quizQuestion.findMany({
       where: {
         quizId
@@ -17,15 +16,18 @@ export class QuizRepository implements IQuizRepository {
         question: true
       }
     })
+    let correctQuestions = 0
+
     const score =
       questions?.reduce((accumulator, current) => {
         if (current.question.correctAlternative === current.markedAlternative) {
+          correctQuestions++
           return accumulator + 10
         }
         return 0
       }, 0) ?? 0
 
-    return score
+    return { score, correctQuestions }
   }
 
   async getById(quizId: number): Promise<Quiz | null> {
@@ -39,14 +41,15 @@ export class QuizRepository implements IQuizRepository {
   }
 
   async finish(quizId: number): Promise<Quiz | null> {
-    const score = await this.calculateScore(quizId)
+    const data = await this.calculateScore(quizId)
     const updatedQuiz = await prisma.quiz.update({
       where: {
         id: quizId
       },
       data: {
         status: 'COMPLETED',
-        score
+        score: data?.score,
+        correctQuestions: data?.correctQuestions
       }
     })
 
@@ -59,6 +62,7 @@ export class QuizRepository implements IQuizRepository {
         name: 'Quiz teste',
         score: 0,
         userId: data.userId,
+        categorySlug: data.questionCategorySlug,
         quizQuestions: {
           createMany: {
             data: data.questionsIds

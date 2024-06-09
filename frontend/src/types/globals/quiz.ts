@@ -8,6 +8,8 @@ export interface IQuiz {
   score: number
   status: 'PENDING' | 'COMPLETED'
   totalQuestions: number
+  correctQuestions: number
+  categorySlug: QuizCategoryTypes
   createdAt: string
   updatedAt: string
   userId: number

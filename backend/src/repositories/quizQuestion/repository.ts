@@ -37,7 +37,7 @@ export class QuizQuestionRepository implements IQuizQuestionRepository {
 
     const questions = await prisma.quizQuestion.findMany({
       take: 1,
-      skip: page,
+      skip: page - 1,
       where: {
         quizId: quizId
       },

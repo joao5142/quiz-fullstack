@@ -1,3 +1,5 @@
+import { Prisma } from '@prisma/client'
+
 export const questions = [
   {
     alternativeA: '<table>',

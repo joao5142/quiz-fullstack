@@ -1,3 +1,5 @@
+import { Prisma } from '@prisma/client'
+
 export const questionCategories = [
   { name: 'HTML', slug: 'html' },
   { name: 'Javascript', slug: 'js' },

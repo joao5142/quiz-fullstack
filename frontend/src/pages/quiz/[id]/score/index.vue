@@ -9,11 +9,15 @@
         <app-text as="strong" size="heading-l" weight="bold"> You scored... </app-text>
       </v-col>
       <v-col cols="12" md="6">
-        <app-box class="pa-4 d-flex flex-column align-center justify-center">
-          <app-quiz-category category="html"></app-quiz-category>
+        <app-box class="pa-4 d-flex flex-column align-center">
+          <app-quiz-category :category="quiz!.categorySlug"></app-quiz-category>
 
-          <app-text as="strong" size="display" weight="bold">8</app-text>
-          <app-text>out of 10</app-text>
+          <app-text class="line-height-normal mt-6" as="strong" size="display" weight="bold">{{
+            quiz?.correctQuestions
+          }}</app-text>
+          <app-text as="span" size="body-m" weight="semibold" color="grey-navy"
+            >out of {{ quiz?.totalQuestions }}</app-text
+          >
         </app-box>
         <app-button background="purple" size="xl" class="w-100 mt-5">
           <app-text as="span" weight="medium" size="heading-s" color="pure-white">
@@ -26,9 +30,20 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia'
+import { useQuizStore } from '@/stores/quizStore'
+
 definePageMeta({
   layout: 'default-view-layout',
 })
+
+const quizStore = useQuizStore()
+
+const { quiz } = storeToRefs(quizStore)
+
+const quizId = Number(useRoute().params.id)
+
+quizStore.getQuizById(quizId)
 </script>
 
 <style scoped></style>

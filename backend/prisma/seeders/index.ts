@@ -6,14 +6,14 @@ const prisma = new PrismaClient()
 
 async function main() {
   await prisma.questionCategory.createMany({
-    data: questionCategories
+    data: questionCategories as any
   })
   await prisma.question.createMany({
-    data: questions
+    data: questions as any
   })
 
   await prisma.user.create({
-    data: defaultUser
+    data: defaultUser as any
   })
 }
 

@@ -2,7 +2,7 @@
   <div>
     <v-row>
       <v-col cols="12" md="6" class="d-flex flex-column justify-space-between">
-        <div v-if="isRequestLoading">
+        <div v-if="isRequestLoading && !quiz">
           <v-skeleton-loader max-width="300" type="list-item"></v-skeleton-loader>
 
           <v-skeleton-loader max-width="300" type="text"></v-skeleton-loader>
@@ -13,7 +13,7 @@
             >Question {{ pagination.page }} of {{ quiz?.totalQuestions }}</app-text
           >
           <app-text as="strong" size="heading-m" weight="semibold">
-            {{ question?.description }}
+            {{ quizQuestion?.question?.description }}
           </app-text>
         </div>
 
@@ -21,7 +21,7 @@
       </v-col>
 
       <v-col cols="12" md="6">
-        <div v-if="isRequestLoading">
+        <div v-if="isRequestLoading && !quizQuestion!.question">
           <v-skeleton-loader
             v-for="item in 4"
             :key="'skeleton' + item"
@@ -34,17 +34,41 @@
           <app-question-alternative
             v-for="(alternative, index) in alternatives"
             :key="'alternatives' + index"
-            :correct-alternative="question?.correctAlternative"
+            :correct-alternative="quizQuestion?.question?.correctAlternative"
             :marked-alternative="selectedAlternative"
             :alternative="alternative"
-            :is-finished="Boolean(question!.markedAlternative)"
+            :is-finished="Boolean(quizQuestion?.markedAlternative)"
             @select:alternative="selectedAlternative = $event"
           ></app-question-alternative>
         </v-radio-group>
 
-        <app-button background="purple" size="xl" class="w-100">
+        <app-button
+          v-if="!Boolean(quizQuestion?.markedAlternative)"
+          background="purple"
+          size="xl"
+          class="w-100"
+          @click="handleSubmitQuestion"
+        >
           <app-text as="span" weight="medium" size="heading-s" color="pure-white">
             Submit Answer
+          </app-text>
+        </app-button>
+
+        <app-button
+          v-else-if="pagination.page < quiz!.totalQuestions"
+          background="purple"
+          size="xl"
+          class="w-100"
+          @click="handleGotToNextQuestion"
+        >
+          <app-text as="span" weight="medium" size="heading-s" color="pure-white">
+            Next Question
+          </app-text>
+        </app-button>
+
+        <app-button v-else background="purple" size="xl" class="w-100" @click="handleFinishQuiz">
+          <app-text as="span" weight="medium" size="heading-s" color="pure-white">
+            Finish Quiz
           </app-text>
         </app-button>
       </v-col>
@@ -61,56 +85,69 @@ import { QuizServices } from '@/services/QuizServices'
 
 definePageMeta({
   layout: 'default-view-layout',
+
+  middleware: ['check-quiz-status'],
 })
+
+const { showToastSuccess } = useToast()
+
+const quizStore = useQuizStore()
+
+const { quiz } = storeToRefs(quizStore)
 
 const loadingStore = useLoadingStore()
 const { isRequestLoading } = storeToRefs(loadingStore)
 
 const quizId = Number(useRoute().params.id)
 
-const quizStore = useQuizStore()
-const { quiz } = storeToRefs(quizStore)
-
 const pagination = ref({
   page: 1,
+  nextPage: 0,
 })
 
-const question = ref<IQuestion | null>()
+interface IQuizQuestion {
+  question: IQuestion
+  markedAlternative: AlternativeSlugTypes
+  questionId: number
+  quizId: number
+}
+const quizQuestion = ref<IQuizQuestion | null>()
 
 interface IAlternative {
   slug: AlternativeSlugTypes
   text: string
 }
+
+const selectedAlternative = ref<AlternativeSlugTypes>('a')
+
 const alternatives = computed<IAlternative[] | null>(() => {
-  if (question.value) {
+  if (quizQuestion.value?.question) {
     return [
       {
         slug: 'a',
-        text: question.value.alternativeA,
+        text: quizQuestion.value?.question.alternativeA,
       },
       {
         slug: 'b',
-        text: question.value.alternativeB,
+        text: quizQuestion.value?.question.alternativeB,
       },
       {
         slug: 'c',
-        text: question.value.alternativeC,
+        text: quizQuestion.value?.question.alternativeC,
       },
       {
         slug: 'd',
-        text: question.value.alternativeD,
+        text: quizQuestion.value?.question.alternativeD,
       },
       {
         slug: 'e',
-        text: question.value.alternativeE,
+        text: quizQuestion.value?.question.alternativeE,
       },
     ]
   } else {
     return null
   }
 })
-
-const selectedAlternative = ref<AlternativeSlugTypes>('a')
 
 const quizProgress = computed(() => {
   if (pagination.value.page && quiz?.value?.totalQuestions) {
@@ -120,33 +157,63 @@ const quizProgress = computed(() => {
   return 0
 })
 
-async function getPaginatedQuestion() {
+async function getPaginatedQuestion(page?: number) {
   try {
     const data = await QuizServices.getPaginatedQuestions({
       quizId,
-      page: pagination.value.page,
+      page: page || pagination.value.page,
     })
 
     console.log(data)
 
-    question.value = data!.data[0].question
+    quizQuestion.value = data!.data[0]
+
+    pagination.value.page = data!.page
+    pagination.value.nextPage = data!.nextPage
   } catch (err) {
     console.log(err)
   }
 }
-async function getQuizById() {
-  try {
-    const quiz = await QuizServices.getById(quizId)
 
-    if (quiz) {
-      quizStore.setQuiz(quiz)
+async function handleSubmitQuestion() {
+  try {
+    const questionData = await QuizServices.markQuizQuestion({
+      quizId,
+      questionId: quizQuestion.value!.question!.id,
+      markedAlternative: selectedAlternative.value,
+    })
+
+    if (questionData) {
+      getPaginatedQuestion()
     }
   } catch (err) {
     console.log(err)
   }
 }
 
-await Promise.all([getPaginatedQuestion(), getQuizById()])
+async function handleGotToNextQuestion() {
+  try {
+    await getPaginatedQuestion(pagination.value.nextPage)
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+async function handleFinishQuiz() {
+  try {
+    const quiz = await QuizServices.finishQuiz(quizId)
+
+    if (quiz) {
+      showToastSuccess('Quiz finalizado com sucesso', 1000, async () => {
+        await navigateTo(`/quiz/${quizId}/score`)
+      })
+    }
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+await Promise.all([getPaginatedQuestion(), quizStore.getQuizById(quizId)])
 </script>
 
 <style scoped></style>
