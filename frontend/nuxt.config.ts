@@ -4,6 +4,10 @@ import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
 export default defineNuxtConfig({
   srcDir: 'src/',
 
+  dir: {
+    public: '../public',
+  },
+
   devtools: {
     enabled: true,
 
@@ -83,24 +87,33 @@ export default defineNuxtConfig({
       theme_color: '#ffff',
       display: 'standalone',
       lang: 'pt-br',
+      screenshots: [
+        {
+          src: 'manifest/screen.png',
+          sizes: '320x320',
+          type: 'image/png',
+          form_factor: 'wide',
+          label: 'Frontend Quiz App',
+        },
+      ],
       icons: [
         {
-          src: 'icons/icon64x64.png',
+          src: 'manifest/icons/icon64x64.png',
           sizes: '64x64',
           type: 'image/png',
         },
         {
-          src: 'icons/icon144x144.png',
+          src: 'manifest/icons/icon144x144.png',
           sizes: '144x144',
           type: 'image/png',
         },
         {
-          src: 'icons/icon192x192.png',
+          src: 'manifest/icons/icon192x192.png',
           sizes: '192x192',
           type: 'image/png',
         },
         {
-          src: 'icons/icon512x512.png',
+          src: 'manifest/icons/icon512x512.png',
           sizes: '512x512',
           type: 'image/png',
         },
