@@ -1,5 +1,5 @@
-<h1>Facebook desenvolvido com Vue js</h1>
-<h4>🚀 Projeto Facebook desenvolvido com Vue.js e Nuxt</h4>
+<h1>Quiz desenvolvido com Vue js</h1>
+<h4>🚀 Projeto Quiz desenvolvido com Vue.js e Nuxt</h4>
 
 <h2>🚧 Status do projeto</h2>
 <p>Em Progresso</p>
@@ -13,6 +13,9 @@
  	<li>Instale as dependências(npm install)</li>
 	<li>Execute a aplicação em modo de desenvolvimento(npm run dev)</li>
  	<li>Acesse http://localhost:3000(Caso a porta esteja disponível) </li>
+	<li>A api deve ser rodada localmente, para as intrucões de como rodar o backend é necessario entrar na pasta 'backend'
+	</li>
+
 </ul>
 
 <h2>🤖 Tecnologias Utilizadas</h2>
@@ -24,17 +27,15 @@
 </div>
 
 <h2>🖼️ Demonstração da aplicação</h2>
-<img margin-bottom="20px" src="/src/assets/readme/login.png">
+<img margin-bottom="20px" src="./public/readme/readme1.png">
 <hr/>
-<img margin-bottom="20px" src="/src/assets/readme/home.png">
+<img margin-bottom="20px" src="./public/readme/readme2.png">
 <hr/>
-<img margin-bottom="20px" src="/src/assets/readme/perfil.png">
+<img margin-bottom="20px" src="./public/readme/readme3.png">
 <hr/>
-<img margin-bottom="20px" src="/src/assets/readme/messenger.png">
-<hr/>
-<img margin-bottom="20px" src="/src/assets/readme/search.png">
+<img margin-bottom="20px" src="./public/readme/readme4.png">
 
-<h4  style="display: inline_block">Visualização do site :</h4><a style="display: inline_block" target="blank" href="https://facebook-front-roan.vercel.app/auth/login">Preview na Vercel</a>
+<h4  style="display: inline_block">Visualização do site :</h4><a style="display: inline_block" target="blank" href="https://quiz-fullstack.vercel.app/">Preview na Vercel</a>
 
 <h2>🧑🏻‍ Autor</h2>
 <p>Feito por João paulo</p>

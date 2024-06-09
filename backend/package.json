@@ -9,6 +9,9 @@
     "start:prod": "node build/server.js",
     "build": "npx tsup src --out-dir build"
   },
+  "engines": {
+    "node": ">=18"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
