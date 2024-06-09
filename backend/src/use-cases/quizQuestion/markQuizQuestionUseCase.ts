@@ -1,6 +1,6 @@
 import { QuizQuestionRepository } from '@/repositories/quizQuestion/repository'
-import { IPaginatedQuizQuestion } from '@/types/quizQuestion'
 import { Question } from '@prisma/client'
+import { MarkQuizQuestionError } from './errors/MarkQuizQuestionException'
 
 interface MarkQuizQuestionUseCaseRequest {
   quizId: number
@@ -15,8 +15,12 @@ export class MarkQuizQuestionUseCase {
     quizId,
     questionId,
     markedAlternative
-  }: MarkQuizQuestionUseCaseRequest): Promise<Question| null> {
-    const question = await this.quizQuestionRepository.
+  }: MarkQuizQuestionUseCaseRequest): Promise<Partial<Question> | null> {
+    const question = await this.quizQuestionRepository.markQuizQuestion({
+      markedAlternative,
+      questionId,
+      quizId
+    })
 
     return question
   }

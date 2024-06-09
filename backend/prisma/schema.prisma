@@ -23,6 +23,14 @@ enum QuizStatus {
   COMPLETED
 }
 
+enum Alternatives {
+  a
+  b
+  c
+  d
+  e
+}
+
 model User {
   id       Int    @id @default(autoincrement())
   name     String
@@ -63,10 +71,12 @@ model QuizQuestion {
   question   Question @relation(fields: [questionId], references: [id])
   questionId Int
 
-  markedAlternative String?
+  markedAlternative Alternatives?
 
   quiz   Quiz @relation(fields: [quizId], references: [id])
   quizId Int
+
+  @@unique([quizId, questionId])
 }
 
 model QuestionCategory {
@@ -81,14 +91,14 @@ model QuestionCategory {
 }
 
 model Question {
-  id                 Int    @id @default(autoincrement())
+  id                 Int          @id @default(autoincrement())
   alternativeA       String
   alternativeB       String
   alternativeC       String
   alternativeD       String
   alternativeE       String
   description        String
-  correctAlternative String
+  correctAlternative Alternatives
 
   questionCategory   QuestionCategory @relation(fields: [questionCategoryId], references: [id])
   questionCategoryId Int

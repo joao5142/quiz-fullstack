@@ -8,4 +8,5 @@ export interface IQuizRepository {
   create(data: ICreateQuiz): Promise<Quiz | null>
   finish(quizId: number): Promise<Quiz | null>
   getById(quizId: number): Promise<Quiz | null>
+  calculateScore(quizId: number): Promise<number | null>
 }

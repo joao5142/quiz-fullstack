@@ -15,7 +15,7 @@
           v-for="(category, index) in questionCategories"
           :key="'category' + index"
           class="pa-5 mb-5 d-flex align-center cursor-pointer"
-          @click="handleNavigateToQuizCategory"
+          @click="() => handleNavigateToQuizCategory(category)"
         >
           <app-quiz-category :category="category"></app-quiz-category>
         </app-box>
@@ -27,10 +27,15 @@
 <script setup lang="ts">
 import { QuizCategoryTypes } from '../types/globals/quiz'
 import { QuizServices } from '../services/QuizServices'
+import { useQuizStore } from '../stores/quizStore'
+import { QuizError } from '../exceptions/general/QuizError'
 
 definePageMeta({
   layout: 'default-view-layout',
 })
+
+const { setQuiz } = useQuizStore()
+const { showToastError } = useToast()
 
 const questionCategories: QuizCategoryTypes[] = ['html', 'css', 'js', 'accessibility']
 
@@ -38,8 +43,15 @@ async function handleNavigateToQuizCategory(category: QuizCategoryTypes) {
   try {
     const quiz = await QuizServices.createQuiz(category)
 
-    await navigateTo('/quiz/1')
-  } catch (err) {}
+    if (quiz) {
+      setQuiz(quiz!)
+      await navigateTo(`/quiz/${quiz.id}`)
+    } else {
+      throw new QuizError('Error ao criar quiz')
+    }
+  } catch (err) {
+    showToastError(err, 'Error ao criar quiz', 1000)
+  }
 }
 </script>
 

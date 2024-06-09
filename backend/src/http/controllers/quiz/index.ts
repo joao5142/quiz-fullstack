@@ -3,7 +3,10 @@ import {
   finishQuizUseCaseFactory,
   getQuizByIdUseCaseFactory
 } from '@/use-cases/factories/quiz'
-import { getPaginatedByQuizIdUseCaseFactory } from '@/use-cases/factories/quizQuestion'
+import {
+  getPaginatedByQuizIdUseCaseFactory,
+  markQuizQuestionUseCaseFactory
+} from '@/use-cases/factories/quizQuestion'
 
 import { FastifyReply, FastifyRequest } from 'fastify'
 
@@ -89,5 +92,35 @@ export async function getPaginatedQuiz(request: FastifyRequest, reply: FastifyRe
     return reply.status(200).send(quiz)
   } else {
     return reply.status(400)
+  }
+}
+
+export async function markQuizQuestion(request: FastifyRequest, reply: FastifyReply) {
+  const bodyParams = z.object({
+    markedAlternative: z.string()
+  })
+
+  const routerParams = z.object({
+    questionId: z.coerce.number(),
+    quizId: z.coerce.number()
+  })
+
+  const bodyData = bodyParams.safeParse(request.body)
+  const paramsData = routerParams.safeParse(request.params)
+
+  if (bodyData.success && paramsData.success) {
+    const markQuizQuestionUseCase = markQuizQuestionUseCaseFactory()
+
+    const { questionId, quizId } = paramsData.data
+
+    const question = await markQuizQuestionUseCase.execute({
+      markedAlternative: bodyData.data.markedAlternative,
+      questionId,
+      quizId
+    })
+
+    return reply.status(201).send({ question })
+  } else {
+    return reply.status(400).send({ message: 'Error de validação, verifique os campos' })
   }
 }

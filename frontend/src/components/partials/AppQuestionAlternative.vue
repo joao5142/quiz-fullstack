@@ -37,18 +37,19 @@
 </template>
 
 <script setup lang="ts">
+import { AlternativeSlugTypes } from '../../types/globals/question'
 import IconCorrect from '@/assets/images/icon-correct.svg?url_default'
 import IconIncorrect from '@/assets/images/icon-incorrect.svg?url_default'
 import { ColorTypes } from '@/plugins/vuetify'
 
 type EmitTypes = {
-  'select:alternative': [value: string]
+  'select:alternative': [value: AlternativeSlugTypes]
 }
 
 defineEmits<EmitTypes>()
 
 interface IProps {
-  alternative: { slug: string; text: string }
+  alternative: { slug: AlternativeSlugTypes; text: string }
   markedAlternative?: string
   correctAlternative?: string
   isFinished?: boolean

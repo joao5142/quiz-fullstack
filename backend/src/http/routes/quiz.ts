@@ -1,6 +1,5 @@
 import { FastifyInstance } from 'fastify'
-import { create, finish, getById, getPaginatedQuiz } from '../controllers/quiz'
-import { markQuizQuestion } from '../controllers/quizQuestion'
+import { create, finish, getById, getPaginatedQuiz, markQuizQuestion } from '../controllers/quiz'
 
 export async function quizRoutes(app: FastifyInstance) {
   app.post('', create)

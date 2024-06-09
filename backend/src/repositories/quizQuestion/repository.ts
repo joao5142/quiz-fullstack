@@ -3,14 +3,20 @@ import { IQuizQuestionRepository } from './repository.interface'
 import { prisma } from '@/lib/prisma'
 import { IPaginatedQuizQuestion } from '@/types/quizQuestion'
 
+interface IMarkQuizQuestion {
+  quizId: number
+  questionId: number
+  markedAlternative: string
+}
 export class QuizQuestionRepository implements IQuizQuestionRepository {
-  async markQuizQuestion(
-    quizId: number,
-    questionId: number,
-    markedAlternative: string
-  ): Promise<Question | null> {
+  async markQuizQuestion({
+    quizId,
+    questionId,
+    markedAlternative
+  }: IMarkQuizQuestion): Promise<Partial<Question> | null> {
     const question = await prisma.quizQuestion.update({
-      where: { quizId, questionId },
+      where: { quizId_questionId: { quizId, questionId } },
+
       data: {
         markedAlternative
       }
@@ -18,6 +24,7 @@ export class QuizQuestionRepository implements IQuizQuestionRepository {
 
     return question
   }
+
   async getPaginatedByQuizId(
     quizId: number,
     page: number = 1

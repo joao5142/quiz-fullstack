@@ -8,7 +8,7 @@ interface AdaptAxiosRequestConfig extends AxiosRequestConfig {
 }
 
 const axiosInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://0.0.0.0:3333',
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3333',
   timeout: 10000,
   headers: {
     Accept: 'application/json',

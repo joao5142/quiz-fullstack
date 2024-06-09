@@ -9,10 +9,18 @@ export interface IAlternative {
 }
 
 export interface IQuestion {
-  name: string
+  id: number
+  alternativeA: string
+  alternativeB: string
+  alternativeC: string
+  alternativeD: string
+  alternativeE: string
   description: string
-  category: QuizCategoryTypes
-  alternatives: IAlternative[]
+  markedAlternative?: AlternativeSlugTypes
+  correctAlternative: AlternativeSlugTypes
+  questionCategoryId: number
+  createdAt: string
+  updatedAt: string
 }
 export interface IQuestionCategoryItem {
   text: string
