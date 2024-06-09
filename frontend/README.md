@@ -1,5 +1,5 @@
 <h1>Quiz desenvolvido com Vue js</h1>
-<h4>🚀 Projeto Quiz desenvolvido com Vue.js e Nuxt</h4>
+<h4>🚀 Projeto Frontend Quiz PWA  desenvolvido com Vue.js e Nuxt</h4>
 
 <h2>🚧 Status do projeto</h2>
 <p>Em Progresso</p>
