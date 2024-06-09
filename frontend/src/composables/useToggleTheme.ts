@@ -1,5 +1,5 @@
 import { useTheme } from 'vuetify'
-import { getUserTheme, setUserTheme } from '../storage/local/modules/user'
+import { getUserTheme, setUserTheme } from '@/storage/local/modules/user'
 import { ThemeTypes, PosibleThemesTypes } from '@/theme'
 
 export function useToggleTheme() {

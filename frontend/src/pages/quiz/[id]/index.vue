@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-row>
-      <v-col cols="12" md="6" class="d-flex flex-column justify-space-between">
+      <v-col cols="12" md="6" class="d-flex gap-20 flex-column justify-space-between">
         <div v-if="isRequestLoading && !quiz">
           <v-skeleton-loader max-width="300" type="list-item"></v-skeleton-loader>
 
@@ -17,7 +17,7 @@
           </app-text>
         </div>
 
-        <app-progress :progress="quizProgress" class="mb-16"></app-progress>
+        <app-progress :progress="quizProgress" class="mb-3 mb-md-16"></app-progress>
       </v-col>
 
       <v-col cols="12" md="6">

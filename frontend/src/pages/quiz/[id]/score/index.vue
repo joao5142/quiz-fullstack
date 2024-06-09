@@ -19,7 +19,7 @@
             >out of {{ quiz?.totalQuestions }}</app-text
           >
         </app-box>
-        <app-button background="purple" size="xl" class="w-100 mt-5">
+        <app-button background="purple" size="xl" class="w-100 mt-5" @click="handleNavigateToHome">
           <app-text as="span" weight="medium" size="heading-s" color="pure-white">
             Play Again
           </app-text>
@@ -42,6 +42,10 @@ const quizStore = useQuizStore()
 const { quiz } = storeToRefs(quizStore)
 
 const quizId = Number(useRoute().params.id)
+
+async function handleNavigateToHome() {
+  await navigateTo('/')
+}
 
 quizStore.getQuizById(quizId)
 </script>

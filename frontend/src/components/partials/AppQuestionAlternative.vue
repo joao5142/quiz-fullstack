@@ -20,7 +20,7 @@
         <app-text>{{ alternative.text }}</app-text>
       </div>
 
-      <div v-if="isFinished">
+      <template v-if="isFinished">
         <img
           v-if="alternative.slug === correctAlternative"
           :src="IconCorrect"
@@ -31,7 +31,7 @@
           :src="IconIncorrect"
           class="alternative__icon"
         />
-      </div>
+      </template>
     </app-box>
   </div>
 </template>
@@ -71,7 +71,7 @@ function getBorderColorBySelectedAlternative(alternative: string): ColorTypes {
     return 'purple'
   }
 
-  return 'pure-white'
+  return 'box'
 }
 
 function getButtonColorBySelectedAlternative(alternative: string): ColorTypes {
@@ -100,7 +100,8 @@ function getButtonColorBySelectedAlternative(alternative: string): ColorTypes {
     align-items: center;
     justify-content: space-between;
     padding: 0.7rem 1.4rem;
-
+    max-height: 5rem;
+    height: 5rem;
     border-width: 3px;
 
     strong {

@@ -22,3 +22,9 @@ html[data-theme='light'] {
 html[data-theme='dark'] {
   background-image: url(../assets/images/pattern-background-desktop-dark.svg);
 }
+
+html {
+  @media (max-width: 450px) {
+    font-size: 0.8rem;
+  }
+}

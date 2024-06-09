@@ -17,14 +17,16 @@ const axiosInstance = axios.create({
 
 const requestHandler = (requestConfig: AdaptAxiosRequestConfig) => {
   try {
-    const token = getUserToken()
-
     const { setIsRequestLoading } = useLoadingStore()
 
     setIsRequestLoading(true)
 
-    if (token) {
-      requestConfig.headers.Authorization = 'Bearer ' + token
+    if (import.meta.client) {
+      const token = getUserToken()
+
+      if (token) {
+        requestConfig.headers.Authorization = 'Bearer ' + token
+      }
     }
   } catch (e) {}
 

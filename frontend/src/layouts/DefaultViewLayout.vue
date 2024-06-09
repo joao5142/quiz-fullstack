@@ -5,6 +5,8 @@
     <app-loading v-if="isPageLoading" />
 
     <slot></slot>
+
+    <vite-pwa-manifest></vite-pwa-manifest>
   </app-container>
 </template>
 

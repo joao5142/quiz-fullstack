@@ -2,7 +2,7 @@ import { USER_LOGGED_IN } from '@/storage'
 
 export async function setIsLoggedInToSession(value: boolean) {
   try {
-    await sessionStorage.setItem(USER_LOGGED_IN, value)
+    await sessionStorage.setItem(USER_LOGGED_IN, JSON.stringify(value))
   } catch (error) {
     throw error
   }
