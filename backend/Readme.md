@@ -12,6 +12,7 @@
 	<li>Clone esse repositório(git clone)</li>
  	<li>Instale as dependências(npm install)</li>
 	<li>Rodar o comando 'docker-compose' up para subir o banco de dados</li>
+	<li>Copie o arquivo '.env.example' para o diretório root da aplicação como '.env'</li>
  	<li>Rodar o comando 'npx prisma migrate dev' </li>
     <li>Rodar o comando 'npx prisma db seed' caso o 'migrate dev' não suba os seeds </li>
     <li>Rodar o comando 'npm run start:dev' </li>
