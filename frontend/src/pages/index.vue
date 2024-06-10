@@ -29,6 +29,7 @@ import { QuizCategoryTypes } from '../types/globals/quiz'
 import { QuizServices } from '../services/QuizServices'
 import { useQuizStore } from '../stores/quizStore'
 import { QuizError } from '../exceptions/general/QuizError'
+import { useLoadingStore } from '../stores/loadingStore'
 
 definePageMeta({
   layout: 'default-view-layout',
@@ -37,10 +38,13 @@ definePageMeta({
 const { setQuiz } = useQuizStore()
 const { showToastError } = useToast()
 
+const loadingStore = useLoadingStore()
+
 const questionCategories: QuizCategoryTypes[] = ['html', 'css', 'js', 'accessibility']
 
 async function handleNavigateToQuizCategory(category: QuizCategoryTypes) {
   try {
+    loadingStore.setIsPageLoading(true)
     const quiz = await QuizServices.createQuiz(category)
 
     if (quiz) {
@@ -51,6 +55,8 @@ async function handleNavigateToQuizCategory(category: QuizCategoryTypes) {
     }
   } catch (err) {
     showToastError(err, 'Error ao criar quiz', 1000)
+  } finally {
+    loadingStore.setIsPageLoading(false)
   }
 }
 </script>
