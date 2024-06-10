@@ -98,22 +98,22 @@ export default defineNuxtConfig({
       ],
       icons: [
         {
-          src: 'manifest/icons/icon64x64.png',
+          src: 'manifest/icons/64x64.png',
           sizes: '64x64',
           type: 'image/png',
         },
         {
-          src: 'manifest/icons/icon144x144.png',
+          src: 'manifest/icons/144x144.png',
           sizes: '144x144',
           type: 'image/png',
         },
         {
-          src: 'manifest/icons/icon192x192.png',
+          src: 'manifest/icons/192x192.png',
           sizes: '192x192',
           type: 'image/png',
         },
         {
-          src: 'manifest/icons/icon512x512.png',
+          src: 'manifest/icons/512x512.png',
           sizes: '512x512',
           type: 'image/png',
         },
