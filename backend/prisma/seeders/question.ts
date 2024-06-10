@@ -5,7 +5,7 @@ const htmlQuestions = [
     alternativeC: '<form>',
     alternativeD: '<section>',
     alternativeE: '<ul>',
-    correctAlternative: 'd',
+    correctAlternative: 'a',
     description: 'Qual tag  é usada para criar tabelas em HTML ?',
     questionCategoryId: 1
   },
@@ -15,20 +15,11 @@ const htmlQuestions = [
     alternativeC: 'scope',
     alternativeD: 'header',
     alternativeE: 'th',
-    correctAlternative: 'c',
+    correctAlternative: 'e',
     description: 'Qual atributo define o cabeçalho de uma célula de tabela?',
     questionCategoryId: 1
   },
-  {
-    alternativeA: '<th>Minha Célula</th>',
-    alternativeB: '<td>Minha Célula</td>',
-    alternativeC: '<thead>Minha Célula</thead>',
-    alternativeD: '<tr>Minha Célula</tr>',
-    alternativeE: '<caption>Minha Célula</caption>',
-    correctAlternative: 'a',
-    description: 'Qual tag é usada para criar células de cabeçalho em uma tabela?',
-    questionCategoryId: 1
-  },
+
   {
     alternativeA: '<ol>',
     alternativeB: '<ul>',
@@ -36,7 +27,131 @@ const htmlQuestions = [
     alternativeD: '<dl>',
     alternativeE: '<dt>',
     correctAlternative: 'b',
-    description: 'A tag <ul> é usada para criar listas não ordenadas em HTML.',
+    description: 'Qual tag é usada para criar listas não ordenadas em HTML?',
+    questionCategoryId: 1
+  },
+  {
+    alternativeA: '<time>',
+    alternativeB: '<date>',
+    alternativeC: '<datetime>',
+    alternativeD: '<moment>',
+    alternativeE: '<timestamp>',
+    correctAlternative: 'a',
+    description: 'Qual tag HTML é usada para representar um horário ou data em uma página web?',
+    questionCategoryId: 1
+  },
+  {
+    alternativeA: '<hr>',
+    alternativeB: '<br>',
+    alternativeC: '<div>',
+    alternativeD: '<section>',
+    alternativeE: '<p>',
+    correctAlternative: 'a',
+    description: 'Qual tag HTML é usada para criar uma linha horizontal?',
+    questionCategoryId: 1
+  },
+  {
+    alternativeA: '<canvas>',
+    alternativeB: '<svg>',
+    alternativeC: '<img>',
+    alternativeD: '<video>',
+    alternativeE: '<audio>',
+    correctAlternative: 'b',
+    description: 'Qual tag HTML é usada para criar gráficos vetoriais escaláveis?',
+    questionCategoryId: 1
+  },
+  {
+    alternativeA: '<datalist>',
+    alternativeB: '<details>',
+    alternativeC: '<summary>',
+    alternativeD: '<figure>',
+    alternativeE: '<figcaption>',
+    correctAlternative: 'a',
+    description:
+      'Qual tag HTML é usada para fornecer uma lista de opções pré-definidas para um elemento de entrada de dados?',
+    questionCategoryId: 1
+  },
+  {
+    alternativeA: '<dialog>',
+    alternativeB: '<details>',
+    alternativeC: '<summary>',
+    alternativeD: '<section>',
+    alternativeE: '<aside>',
+    correctAlternative: 'a',
+    description: 'Qual tag HTML é usada para definir um diálogo ou caixa de mensagem na página?',
+    questionCategoryId: 1
+  },
+  {
+    alternativeA: "<label for='inputId'>",
+    alternativeB: "<input label='Nome'>",
+    alternativeC: "<input alt='Nome'>",
+    alternativeD: "<input aria-label='Nome'>",
+    alternativeE: "<input aria-labelledby='Nome'>",
+    correctAlternative: 'a',
+    description: 'Qual é a maneira correta de associar um rótulo a um elemento de entrada em HTML?',
+    questionCategoryId: 1
+  },
+  {
+    alternativeA: "<img alt='Descrição da Imagem'>",
+    alternativeB: "<img title='Descrição da Imagem'>",
+    alternativeC: "<img aria-label='Descrição da Imagem'>",
+    alternativeD: "<img aria-labelledby='Descrição da Imagem'>",
+    alternativeE: "<img role='img' aria-label='Descrição da Imagem'>",
+    correctAlternative: 'a',
+    description:
+      'Qual é a maneira correta de fornecer uma descrição textual para uma imagem em HTML?',
+    questionCategoryId: 1
+  },
+  {
+    alternativeA: '<header>',
+    alternativeB: '<nav>',
+    alternativeC: '<footer>',
+    alternativeD: '<aside>',
+    alternativeE: '<main>',
+    correctAlternative: 'd',
+    description:
+      'Qual tag HTML é usada para definir um conteúdo lateral ou uma barra lateral em uma página?',
+    questionCategoryId: 1
+  },
+  {
+    alternativeA: '<figcaption>',
+    alternativeB: '<caption>',
+    alternativeC: '<summary>',
+    alternativeD: '<legend>',
+    alternativeE: '<header>',
+    correctAlternative: 'd',
+    description: 'Qual tag HTML é usada para definir uma legenda para um elemento de formulário?',
+    questionCategoryId: 1
+  },
+  {
+    alternativeA: "<a role='button' href='#'>",
+    alternativeB: '<button>',
+    alternativeC: "<div onclick='window.location='#''>",
+    alternativeD: "<span onclick='window.location='#''>",
+    alternativeE: "<input type='button'>",
+    correctAlternative: 'a',
+    description: 'Qual é a maneira  de criar um link que funcione como um botão semânticamente ?',
+    questionCategoryId: 1
+  },
+  {
+    alternativeA: 'caption',
+    alternativeB: 'summary',
+    alternativeC: 'title',
+    alternativeD: 'alt',
+    alternativeE: 'label',
+    correctAlternative: 'c',
+    description: 'Qual atributo HTML é usado para fornecer um título para um elemento?',
+    questionCategoryId: 1
+  },
+  {
+    alternativeA: '<summary>',
+    alternativeB: '<details>',
+    alternativeC: '<dialog>',
+    alternativeD: '<aside>',
+    alternativeE: '<section>',
+    correctAlternative: 'b',
+    description:
+      'Qual tag HTML é usada para criar um elemento que pode ser expandido ou recolhido para revelar ou ocultar o conteúdo?',
     questionCategoryId: 1
   }
 ]
@@ -387,6 +502,50 @@ const accessibilityQuestions = [
     alternativeE: 'É usado para definir o tamanho da fonte',
     correctAlternative: 'c',
     description: 'O que é o atributo aria-label e como ele é usado na acessibilidade?',
+    questionCategoryId: 4
+  },
+  {
+    alternativeA: 'WCAG',
+    alternativeB: 'ARIA',
+    alternativeC: 'SEO',
+    alternativeD: 'WAI-ARIA',
+    alternativeE: 'HTML5',
+    correctAlternative: 'd',
+    description:
+      'Qual padrão define atributos de acessibilidade para tornar o conteúdo dinâmico e aplicações web mais acessíveis?',
+    questionCategoryId: 4
+  },
+  {
+    alternativeA: 'Contraste de cores',
+    alternativeB: 'Tamanho da fonte',
+    alternativeC: 'Leitor de tela',
+    alternativeD: 'Modo de alto contraste',
+    alternativeE: 'Aumento do cursor',
+    correctAlternative: 'c',
+    description:
+      'Qual tecnologia é usada por usuários com deficiência visual para acessar conteúdo na web?',
+    questionCategoryId: 4
+  },
+  {
+    alternativeA: 'role',
+    alternativeB: 'alt',
+    alternativeC: 'tab-index',
+    alternativeD: 'aria-label',
+    alternativeE: 'aria-hidden',
+    correctAlternative: 'd',
+    description:
+      'Qual atributo HTML é usado para fornecer uma etiqueta alternativa ou descrição para elementos sem texto visível?',
+    questionCategoryId: 4
+  },
+  {
+    alternativeA: 'html[lang]',
+    alternativeB: 'meta[charset]',
+    alternativeC: 'a[title]',
+    alternativeD: 'head[role]',
+    alternativeE: 'body[lang]',
+    correctAlternative: 'a',
+    description:
+      'Qual seletor CSS é usado para selecionar um elemento HTML com um atributo de linguagem específico?',
     questionCategoryId: 4
   }
 ]
