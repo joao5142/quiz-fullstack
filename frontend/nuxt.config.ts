@@ -84,7 +84,7 @@ export default defineNuxtConfig({
       short_name: 'Quiz App PWA',
       description: 'Frontend Quiz App',
       start_url: '/',
-      theme_color: '#ffff',
+      theme_color: '#ffffff',
       display: 'standalone',
       lang: 'pt-br',
       screenshots: [
