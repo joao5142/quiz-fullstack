@@ -35,7 +35,7 @@
 <hr/>
 <img margin-bottom="20px" src="./public/readme/readme4.png">
 
-<h4  style="display: inline_block">Visualização do site :</h4><a style="display: inline_block" target="blank" href="https://quiz-fullstack.vercel.app/">Preview na Vercel</a>
+<h4  style="display: inline_block">Visualização do site :</h4><a style="display: inline_block" target="blank" href="https://frontendquiz.com.br/">Preview na Vercel</a>
 
 <h2>🧑🏻‍ Autor</h2>
 <p>Feito por João paulo</p>
