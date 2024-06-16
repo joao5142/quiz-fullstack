@@ -4,26 +4,12 @@ module.exports = {
     parser: '@typescript-eslint/parser',
   },
   extends: [
+    '../.eslintrc.json',
     '@nuxtjs/eslint-config-typescript',
     'plugin:vue/vue3-recommended',
     'plugin:prettier/recommended',
   ],
   rules: {
-    'prettier/prettier': [
-      'error',
-      {
-        endOfLine: 'auto',
-        trailingComma: 'es5',
-        singleQuote: true,
-        semi: false,
-        printWidth: 100,
-      },
-    ],
-
-    // '@typescript-eslint/consistent-type-imports': 'error',
-
-    'no-useless-catch': 'off',
-
     'vue/multi-word-component-names': 'off',
 
     'vue/component-name-in-template-casing': [
