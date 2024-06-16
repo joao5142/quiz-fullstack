@@ -3,9 +3,9 @@
     "relation": ["delegate_permission/common.handle_all_urls"],
     "target": {
       "namespace": "android_app",
-      "package_name": "app.vercel.quiz_fullstack.twa",
+      "package_name": "br.com.frontendquiz.twa",
       "sha256_cert_fingerprints": [
-        "41:EA:88:0F:68:8A:FB:EC:A9:C8:BD:7F:7C:78:83:E8:46:E0:54:39:DA:A0:06:C9:21:0D:36:03:47:3C:F3:66"
+        "54:E7:87:7D:78:DF:0A:D1:E2:61:4D:5A:C8:0B:C1:67:C8:3B:9B:63:07:71:99:FA:97:45:25:64:53:72:66:8C"
       ]
     }
   }
