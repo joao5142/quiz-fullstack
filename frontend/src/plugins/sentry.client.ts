@@ -9,7 +9,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       app: vueApp,
       trackComponents: true,
 
-      dsn: 'https://597dd56e035f74899df8083568d413a8@o4507459846471680.ingest.us.sentry.io/4507460088692736',
+      dsn: import.meta.env.VITE_SENTRY_DNS,
       integrations: [Sentry.browserTracingIntegration({ router })],
 
       tracesSampleRate: 1.0,
