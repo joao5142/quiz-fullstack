@@ -3,3 +3,4 @@ build
 .env
 # Sentry Config File
 .sentryclirc
+package.lock.json
