@@ -5,7 +5,9 @@ import z from 'zod'
 const envSchema = z.object({
   NODE_ENV: z.enum(['dev', 'test', 'production']).default('dev'),
   PORT: z.coerce.number().default(3333),
-  SENTRY_ENVIRONMENT: z.enum(['development', 'production']).default('development')
+  SENTRY_ENVIRONMENT: z.enum(['development', 'production']).default('development'),
+  SENTRY_DNS: z.string(),
+  SENTRY_AUTH_TOKEN: z.string()
 })
 
 const _env = envSchema.safeParse(process.env)

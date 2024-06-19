@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "tsx  watch src/server.ts",
     "start:prod": "node build/server.js",
-    "build": "tsup src --out-dir build && npm run sentry:sourcemaps",
+    "build": "tsup src --out-dir build",
     "sentry:sourcemaps": "sentry-cli sourcemaps inject --org full-projects --project quiz-h1 ./build && sentry-cli sourcemaps upload --org full-projects --project quiz-h1 ./build"
   },
   "engines": {

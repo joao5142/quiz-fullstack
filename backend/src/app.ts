@@ -1,5 +1,6 @@
-import Fastify from 'fastify'
 import './lib/sentry.ts'
+
+import Fastify from 'fastify'
 import { appRoutes } from './http/routes'
 import { env } from 'process'
 import { ZodError } from 'zod'
