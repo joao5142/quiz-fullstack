@@ -70,6 +70,7 @@ export default defineNuxtConfig({
   modules: [
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
+        //@ts-ignore
         config.plugins.push(vuetify({ autoImport: true }))
       })
     },

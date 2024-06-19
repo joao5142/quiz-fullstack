@@ -34,6 +34,8 @@
     "@mdi/font": "^7.2.96",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
     "@pinia/nuxt": "^0.4.11",
+    "@sentry/vite-plugin": "^2.19.0",
+    "@sentry/vue": "^8.10.0",
     "@typescript-eslint/parser": "^6.7.5",
     "@vueuse/core": "^10.5.0",
     "axios": "^1.5.1",

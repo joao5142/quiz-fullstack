@@ -1,3 +1,4 @@
+import { captureException } from '@sentry/vue'
 import { AppError } from '~/exceptions/general/AppError'
 
 export function useToast() {

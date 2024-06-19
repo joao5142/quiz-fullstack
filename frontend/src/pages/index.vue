@@ -30,6 +30,8 @@ import { QuizServices } from '../services/QuizServices'
 import { useQuizStore } from '../stores/quizStore'
 import { QuizError } from '../exceptions/general/QuizError'
 import { useLoadingStore } from '../stores/loadingStore'
+import { AppError } from '../utils/erros/AppError'
+import { captureException } from '@sentry/vue'
 
 definePageMeta({
   layout: 'default-view-layout',

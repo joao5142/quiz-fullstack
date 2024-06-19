@@ -1,13 +1,18 @@
 import Fastify from 'fastify'
+import './lib/sentry.ts'
 import { appRoutes } from './http/routes'
 import { env } from 'process'
 import { ZodError } from 'zod'
 import { AppError } from './errors'
 import cors from '@fastify/cors'
+import { captureException } from '@sentry/node'
+const Sentry = require('@sentry/node')
 
 export const app = Fastify({
   logger: true
 })
+
+Sentry.setupFastifyErrorHandler(app)
 
 app.register(appRoutes)
 
@@ -31,6 +36,8 @@ app.setErrorHandler((error, _request, response) => {
       message: error.message
     })
   }
+
+  captureException(error)
 
   return response.status(500).send({
     message: 'Internal server error.'
