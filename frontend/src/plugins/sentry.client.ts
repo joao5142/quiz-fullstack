@@ -15,7 +15,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       tracesSampleRate: 1.0,
       tracePropagationTargets: ['localhost', /^https:\/\/frontendquiz\.com\.br\/api/],
 
-      environment: import.meta.env.SENTRY_ENVIRONMENT ?? 'development',
+      environment: import.meta.env.VITE_SENTRY_ENVIRONMENT ?? 'development',
       logErrors: true,
     })
   })
