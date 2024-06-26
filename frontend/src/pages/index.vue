@@ -3,12 +3,12 @@
     <v-row justify="center" align="start">
       <v-col cols="12" md="6">
         <app-text as="span" size="heading-l" weight="thin" class="d-block">
-          Welcome to the
+          {{ t('title.one') }}
         </app-text>
 
-        <app-text as="strong" size="heading-l" weight="bold"> Frontend Quiz! </app-text>
+        <app-text as="strong" size="heading-l" weight="bold">{{ t('title.two') }}</app-text>
 
-        <app-text color="text-light">Pick a subject to get started.</app-text>
+        <app-text color="text-light">{{ t('subtitle') }}</app-text>
       </v-col>
       <v-col cols="12" md="6">
         <app-box
@@ -30,11 +30,13 @@ import { QuizServices } from '../services/QuizServices'
 import { useQuizStore } from '../stores/quizStore'
 import { QuizError } from '../exceptions/general/QuizError'
 import { useLoadingStore } from '../stores/loadingStore'
-import { AppError } from '../utils/erros/AppError'
-import { captureException } from '@sentry/vue'
 
 definePageMeta({
   layout: 'default-view-layout',
+})
+
+const { t } = useI18n({
+  useScope: 'local',
 })
 
 const { setQuiz } = useQuizStore()
@@ -62,5 +64,31 @@ async function handleNavigateToQuizCategory(category: QuizCategoryTypes) {
   }
 }
 </script>
+
+<i18n lang="json">
+{
+  "pt-BR": {
+    "title": {
+      "one": "Bem Vindo ao",
+      "two": "Frontend Quiz!"
+    },
+    "subtitle": "Escolha um assunto para começar"
+  },
+  "en-US": {
+    "title": {
+      "one": "Welcome to the",
+      "two": "Frontend Quiz!"
+    },
+    "subtitle": "Pick a subject to get started."
+  },
+  "es-ES": {
+    "title": {
+      "one": "Bienvenidos a",
+      "two": "Frontend Quiz!"
+    },
+    "subtitle": "Elige un tema para empezar"
+  }
+}
+</i18n>
 
 <style scoped lang="scss"></style>

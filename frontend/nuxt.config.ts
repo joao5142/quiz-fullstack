@@ -70,7 +70,7 @@ export default defineNuxtConfig({
   modules: [
     (_options, nuxt) => {
       nuxt.hooks.hook('vite:extendConfig', (config) => {
-        //@ts-ignore
+        // @ts-ignore
         config.plugins.push(vuetify({ autoImport: true }))
       })
     },
@@ -78,7 +78,42 @@ export default defineNuxtConfig({
     'nuxt-svgo',
     '@vueuse/nuxt',
     '@vite-pwa/nuxt',
+    '@nuxtjs/i18n',
   ],
+
+  i18n: {
+    strategy: 'no_prefix',
+    langDir: './lang/locales',
+    locales: [
+      {
+        code: 'pt-BR',
+        iso: 'pt-BR',
+        name: 'Português(Brasil)',
+        file: 'pt-BR.json',
+        image: '/langs/br.png',
+      },
+      {
+        code: 'en-US',
+        iso: 'en-US',
+        name: 'English(US)',
+        file: 'en-US.json',
+        image: '/langs/en.png',
+      },
+      {
+        code: 'es-ES',
+        iso: 'es-ES',
+        name: 'Español',
+        file: 'es-ES.json',
+        image: '/langs/es.png',
+      },
+    ],
+    detectBrowserLanguage: {
+      useCookie: true,
+      alwaysRedirect: true,
+    },
+    defaultLocale: 'pt-BR',
+  },
+
   pwa: {
     manifest: {
       name: 'Quiz App PWA',
