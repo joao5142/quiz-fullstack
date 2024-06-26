@@ -35,8 +35,8 @@
 <hr/>
 <img margin-bottom="20px" src="./public/readme/readme4.png">
 
-<h4  style="display: inline_block">Visualização do site :</h4><a style="display: inline_block" target="blank" href="https://frontendquiz.com.br/">Preview na Vercel</a>
-<a style="display: inline_block" target="blank" href="https://play.google.com/store/apps/details?id=br.com.frontendquiz.twa">Acesso na play store</a>
+<h4  style="display: inline_block">Visualização do site :</h4><a style="display: inline_block" target="blank" href="https://frontendquiz.com.br/">Preview na Vercel</a><br/>
+<a style="display: inline_block" target="blank" href="https://play.google.com/store/apps/details?id=br.com.frontendquiz.twa">Acesso na play store</a><br/>
 <a style="display: inline_block" target="blank" href="https://www.microsoft.com/store/productId/9P9FHGGR0JK7?ocid=pdpshare">Acesso na microsoft store</a>
 
 <h2>🧑🏻‍ Autor</h2>
